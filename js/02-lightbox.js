@@ -5,7 +5,7 @@ console.log(galleryItems);
 const ulGallery = document.querySelector(".gallery");
 console.log(ulGallery);
 
-function createGallary(elements) {
+function createGallery(elements) {
   return elements
     .map(
       (el) => `
@@ -23,11 +23,21 @@ function createGallary(elements) {
     .join("");
 }
 
-const liGallery = createGallary(galleryItems);
+const liGallery = createGallery(galleryItems);
 
 ulGallery.innerHTML = liGallery;
 
+const images = document.querySelectorAll("img");
+const altValues = [];
+
+images.forEach((image) => {
+  altValues.push(image.alt);
+});
+
+console.log(altValues);
+
 let lightbox = new SimpleLightbox({
   elements: document.querySelectorAll("li"),
-  captions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+  captions: altValues,
+  captionDelay: 250,
 });
